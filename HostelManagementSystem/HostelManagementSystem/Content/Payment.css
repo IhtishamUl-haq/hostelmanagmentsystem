@@ -1,0 +1,109 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body {
+    background:rgba(235,224,232,1); 
+    font-family: 'Roboto', sans-serif;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #E8EAED;
+    max-width: 450px;
+    border-radius: 15px;
+    margin-left: 250px;
+    margin-top: 100px;
+    /*margin: 150px 0 150px;*/
+    padding: 35px;
+    padding-bottom: 20px !important;
+}
+
+.heading {
+    color:black;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/*img {
+    transform: translate(160px,-10px);
+}*/
+
+    /*img:hover {
+        cursor: pointer;
+    }*/
+
+.text-bg-info {
+    font-size: 15px;
+    font-weight: 500;
+    color: #edb537;
+}
+
+/*#cno {
+    transform: translateY(-10px);
+}*/
+
+input {
+    border-bottom: 2.0px solid #E8E5D2 !important;
+    font-weight: bold;
+    border-radius: 0;
+    border: 0;
+    width:200px;
+}
+
+.form-group input:focus {
+    border: 0;
+    outline: 0;
+}
+
+.col-sm-5 {
+    padding-left: 90px;
+}
+
+.btn {
+    background: #F3A092 !important;
+    border: none;
+    border-radius: 30px;
+    width:100px;
+}
+
+    .btn:focus {
+        box-shadow: none;
+    }
+
+/*select {
+    position: relative;
+    min-width: 100px;
+    border:none;
+     
+}*/
+select{
+     
+    padding: 2px;
+    width: 100%;
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+   width:200px;
+    color: #5A667F;
+    
+   
+
+}
+option {
+    color: #223254;
+    border-color:#E8EAED;
+}
+&:focus {
+    outline: none;
+    border-color: #0077FF;
+    box-shadow: 0 0 0 2px rgba(#0077FF,.2);
+}
+
+&:hover{
+    stroke: #0077FF
+}

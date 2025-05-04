@@ -1,0 +1,56 @@
+﻿@model HostelManagementSystem.ViewModels.HostelViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<html>
+<head>
+     
+</head>
+<body>
+    <div class="container contact-form">
+        <form id="hostelAdd" action="Create" method="post">
+            <h3>Add Hostel</h3>
+            <div class="row">
+                <div style="color:red;margin-left:30%;margin-top:100px;font-size:x-large;font-weight:900">
+                    @TempData["hostelNotCreate"]
+                </div>
+                <div class="col-md-8" style="margin-left:90px">
+                    <div class="form-group mt-2">
+                        <input id="hostelName" type="text" name="Name" class="form-control" placeholder="Hostel Name *" required />
+                    </div>
+                    <div class="form-group mt-2">
+                        <input id="hostelOwnerName" type="text" name="OwnerName" class="form-control" placeholder="Hostel Owner Name *" required />
+                    </div>
+                    <div class="form-group mt-2">
+                        <input id="hostelAddress" type="text" name="Address" class="form-control" placeholder="Hostel Address *" required />
+                    </div>
+                    <div class="form-group mt-2">
+                        <input id="hostelPhoneNo" type="text" name="PhoneNo" class="form-control" placeholder="Hostel Phone Number *" required />
+                    </div>
+                    <div class="form-group mt-2">
+                        <input type="submit" name="btnAddHostel" class="btnViewHostel" value="Add Hostel" />
+                    </div>
+
+                    <hr />
+                    <div class="btnViewHostel mt-2">
+                        <a href="@Url.Action("HostelList","Hostel")" style="text-decoration: none; background: #dc3545; font-weight: 600; color: #fff; margin-left:50px"><span> View Hostel</span></a>
+                        @*@Html.ActionLink("View Hostel", "HostelList", "Hostel")*@
+                    </div>
+                </div>
+                @*<div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                        </div>
+                    </div>*@
+            </div>
+        </form>
+    </div>
+   
+
+
+</body>
+</html>
+
+

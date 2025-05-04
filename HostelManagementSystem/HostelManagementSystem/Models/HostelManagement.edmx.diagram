@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="23436f5572174f98b6984bc5d999fb7b" Name="Diagram1">
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.LeaveAndBooked" Width="1.5" PointX="13" PointY="6.25" />
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.UserRole" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.User" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK__LeaveAndB__userI__55BFB948" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK__tbUser__RoleId__339FAB6E" />
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.Hostel" Width="1.5" PointX="5.375" PointY="7" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK__LeaveAndB__hoste__57A801BA" />
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.RoombookingInfo" Width="1.5" PointX="10" PointY="9.75" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK_RoombookingInfo_Hostel" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK_RoombookingInfo_User" />
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.Room" Width="1.5" PointX="7.375" PointY="1" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK_Room_Hostel" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK__LeaveAndB__roomI__59904A2C" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK_RoombookingInfo_Room" />
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.Payment" Width="1.5" PointX="9.875" PointY="4.125" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK_tbPayments_tbHostel" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK__tbPayment__roomI__5812160E" />
+        <AssociationConnector Association="DbHostelManagementSystemModel.FK_tbPayments_tbUser" />
+        <EntityTypeShape EntityType="DbHostelManagementSystemModel.LogingException" Width="1.5" PointX="9.375" PointY="0.75" />
+        </Diagram>
+      <Diagram DiagramId="a73c0065c3e14deeb500a2d369f1dcde" Name="Diagram2" >
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

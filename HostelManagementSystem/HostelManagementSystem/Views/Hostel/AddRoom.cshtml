@@ -1,0 +1,117 @@
+﻿@model HostelManagementSystem.ViewModels.RoomsViewModel
+
+@{
+    ViewBag.Title = "AddRoom";
+}
+<html>
+<head>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body style="">
+    <div class="container contact-form">
+        <form id="roomAdd" action="AddRoom" method="post">
+            <h3>Add Room</h3>
+            <div style="color:red">
+                @ViewBag.RoomNotAdd
+            </div>
+            <div class="row">
+                <div class="col-md-8" style="margin-left:90px">
+
+                    <div class="form-group mt-2">
+                        <input id="roomNumber" type="text" name="roomNumber" class="form-control" placeholder="Room Number *"  />
+                        <div style="color:red">@ViewBag.RoomAvailability</div>
+                    </div>
+                    <div class="form-group mt-2">
+                        <input id="roomSize" type="text" name="roomSize" class="form-control" placeholder="Room Size*"   />
+                    </div>
+                    <div class="form-group mt-2">
+                        <input id="roomRent" type="text" name="roomRent" class="form-control" placeholder="Room Rent*"  />
+                    </div>
+                   
+                       
+
+                        @*@Html.EditorFor(model => model.isRoomAvilable)
+                            @Html.ValidationMessageFor(model => model.isRoomAvilable, "", new { @class = "selectpicker text-danger" })*@
+
+                        @*<div class="mt-2">
+                            <label class="m-2"> Room Available</label>
+                            <select name="isRoomAvailable" id="isRoomAvailable" class="selectpicker" style="width: 150px; background-color: white;border-color:antiquewhite; border-radius: 1rem;">
+                                <option value="">Please Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select><br />
+                        </div>*@
+                        @*<input id="isRoomAvilable" type="text" name="isRoomAvilable" class="form-control" placeholder="Is Room Avilable*" />*@
+                    
+                    <div class="form-group ">
+
+                        <input type="submit" name="btnAddRoom" class="btnViewHostel" value="Add Room" />
+                    </div>
+
+                    <hr />
+                    <div class="btnViewHostel ">
+                        <a href="@Url.Action("HostelList","Hostel")" style="text-decoration: none; background: #dc3545; font-weight: 600; color: #fff; margin-left:50px"><span> View Hostel</span></a>
+                        @*@Html.ActionLink("View Hostel", "HostelList", "Hostel")*@
+                    </div>
+                </div>
+                @*<div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                        </div>
+                    </div>*@
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $('#roomAdd').on('submit', function (e) {
+            if (AddRoomValidation() == false) {
+                AddRoomValidation();
+                e.preventDefault();
+            }
+
+        });
+
+        function AddRoomValidation() {
+            var validate = true;
+            var inputRoomNumber = $('#roomNumber').val();
+            var inputRoomSize = $('#roomSize').val();
+            var inputRoomRent = $('#roomRent').val();
+            var inputRoomAvailable = $('#isRoomAvailable').val();
+            /*var inputValidation = new RegExp(/^[0-9]$/);*/
+            $('.Error').remove();
+
+            if (inputRoomNumber.length < 1) {
+                $('#roomNumber').after('<span class="Error" style="color:red">This field is required.</span>');
+
+                validate = false;
+            }  
+
+            if (inputRoomSize.length < 1) {
+                $('#roomSize').after('<span class="Error" style="color:red">This field is required.</span>');
+
+                validate = false;
+            }  
+
+            if (inputRoomRent.length < 1) {
+                $('#roomRent').after('<span class="Error" style="color:red">This field is required.</span>');
+
+                validate = false;
+            }  
+
+            if (inputRoomAvailable.length < 1) {
+                $('#isRoomAvailable').after('<span class="Error" style="color:red">This field is required.</span>');
+
+                validate = false;
+            }
+
+            return validate
+        }
+    </script>
+</body>
+
+</html>
+
+
+ 

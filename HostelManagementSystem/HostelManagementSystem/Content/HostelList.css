@@ -1,0 +1,61 @@
+﻿.Hostel {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.Hostel {
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-clip: padding-box;
+    min-height: 370px;
+}
+
+    .Hostel span.card-title {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .Hostel .hostel-image {
+        position: relative;
+        overflow: hidden;
+    }
+        .Hostel .hostel-image img{
+    border-radius: 2px 2px 0 0;
+    background-clip: padding-box;
+    position: relative;
+    z-index: -1;
+}
+
+.Hostel .hostel-image span.card-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+}
+
+.Hostel span.card-title {
+    line-height: 48px;
+}
+
+.Hostel .card-action {
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 16px;
+}
+
+.hostel-link a {
+    margin-left: 10px;
+    color: #ffab40;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+    .hostel-link a:hover {
+        color: darkred;
+        text-decoration: none;
+    }
+
+ 

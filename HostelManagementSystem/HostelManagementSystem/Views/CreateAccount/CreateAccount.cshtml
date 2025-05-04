@@ -1,0 +1,184 @@
+﻿@model HostelManagementSystem.ViewModels.UserModel
+
+@{
+    ViewBag.Title = "CreateAccount";
+}
+
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="~/Scripts/RegulerExpression.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-4 " style="margin-left:300px">
+
+                <div style="color:red">
+
+                    @ViewBag.exceptionError
+                </div>
+                <p style="margin-left:60px">Please create account</p>
+
+
+                <form id="CreateForm" action="CreateAccount" method="post" enctype="multipart/form-data" style="margin-left:40px">
+
+                    <div class="form-outline col-xs-10   ">
+                        <label class="form-label" for="firstName">First Name</label>
+                        <input type="text" id="firstName" class="form-control " name="FirstName" required />
+
+
+                    </div>
+                    <div class="form-outline col-xs-10  ">
+                        <label class="form-label" for="lastName">Last Name</label>
+                        <input type="text" id="lasttName" class="form-control " name="LastName" />
+
+
+                    </div>
+
+                    <div class="form-outline col-xs-10  ">
+                        <label class="form-label" for="Email">Email address</label>
+                        <input type="text" id="email" class="form-control " name="EmailAddress" required />
+                        <div style="color:red"> @ViewBag.checkEmail</div>
+
+                    </div>
+                    <div class="form-outline col-xs-10  ">
+                        <label class="form-label" for="phonNO">Phone</label>
+                        <p>e.g:02345678901</p>
+                        <input type="text" id="phoneNo" class="form-control " name="PhoneNo" required />
+                        <div style="color:red">@ViewBag.checkPhone</div>
+
+
+                    </div>
+
+                    <div class="form-outline col-xs-10  ">
+                        <label class="form-label" for="cnic">CNIC</label>
+                        <p>e.g:1234567890123</p>
+                        <input type="text" id="cnic" class="form-control " name="CNIC" required />
+                        <div style="color:red"> @ViewBag.checkCNIC</div>
+
+
+                    </div>
+                    <div class="form-outline col-xs-10  ">
+                        <label class="form-label" for="addresses">Addresses</label>
+                        <input type="text" id="addresses" class="form-control " name="Address" required />
+
+
+                    </div>
+                    <div class="form-outline col-xs-10">
+                        <label class="form-label" for="Password">Password</label>
+                        <input type="password" id="password" class="form-control" name="Password" required />
+
+
+                    </div>
+
+
+                    <div class="form-group col-md-10">
+                        <label class="form-label" for="Image">Upload image</label>
+                        <input type="file" name="Image" value="Choose Image" accept="image/png,image/jpeg,image/jpg" required /><P style="color:cadetblue"> Image in the form of .png,.jpg,.jpeg</P>
+
+                        <div style="color:red">@ViewBag.imageExtensions</div>
+
+
+
+                    </div>
+
+
+                    @*<div class="form-group col-md-10">
+                        @Html.DropDownListFor(model => model.RoleId, ViewBag.UserRole as SelectList, "--Select Role--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                    </div>*@
+                   
+                    <div class="mt-2">
+                        <label class="m-2"> Please Select Role</label>
+                        <select name="RoleId" id="RoleId" class="selectpicker" style="width: 150px; background-color: white;border-color:antiquewhite; border-radius: 1rem;" required>
+                            <option value="" selected disabled>Please Select</option>
+                            <option value="1">Student</option>
+                            <option value="2">Inchargae</option>
+                        </select><br />
+                    </div>
+
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary " id="btnSignUp" style="margin-left:100px">Sign Up</button>
+
+                </form>
+                <div style="margin-left:130px;margin-top:20px">
+                    @*@Html.ActionLink("Already account", "Login", "Login")*@
+                    <a style="text-decoration:none" href="@Url.Action("Login","Login")"> <span>Already account</span></a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <script>
+        $('#CreateForm').on("submit", function (e) {
+            if (SignUpFormValidation() == false) {
+                SignUpFormValidation();
+                e.preventDefault();
+
+            }
+        });
+
+        function SignUpFormValidation() {
+            var validate = true;
+            var inputEmail = $('#email').val();
+            var inputPhoneNo = $('#phoneNo').val();
+            var inputCnic = $('#cnic').val();
+            var inputPassword = $('#password').val();
+
+            //  var cnicRegularExpression = new RegExp(/^[0-9]{13}$/);
+            //  var phoneRegExp = new RegExp(/^[0-9]{11}$/);
+            ///*  var passwordlRegExp = new RegExp(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#$%&]).*$/);*/
+            //  var emailRegExp = new RegExp(/^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/);
+
+            $('.Error').remove();
+
+            //if (inputCnic.length < 13) {
+            //    $('#cnic').after('<span class="Error" style="color:red">CNIC number must be 13 digits</span>')
+            //    validate = false;
+
+            //}
+            //if (inputCnic.length > 13) {
+            //    $('#cnic').after('<span class="Error" style="color:red">CNIC number must be 13 digits</span>')
+            //    validate = false;
+            //}
+
+            if (EmailReg(inputEmail) == false) {
+                $('#email').after('<span class="Error" style="color:red">Please enter valid email.</span>');
+                validate = false;
+            }
+            if (PhoneRegExp(inputPhoneNo) == false) {
+                $('#phoneNo').after('<span class="Error" style="color:red">Please enter valid phone number.</span>');
+                validate = false;
+            }
+            if (CnicRegExp(inputCnic) == false) {
+                $('#cnic').after('<span class="Error" style="color:red">Please valid cnic number.</span>');
+                validate = false;
+            }
+            if (PasswordRegExp(inputPassword) == false) {
+                $('#password').after('<span class="Error" style="color:red">Password must be include upercase,lowercase and special character.</span>');
+                validate = false;
+            }
+            return validate;
+        }
+
+                //function checkCnic() {
+                //    if (cnicReqularExpression)
+                //}
+
+
+    </script>
+    <style>
+        .col {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            padding: 20px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿.hostelCard {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* .card {
+
+        margin-top: 10px;
+        box-sizing: border-box;
+        border-radius: 2px;
+        background-clip: padding-box;
+        min-height: 400px;
+        max-width:400px;
+    }*/
+.hostelCard {
+    margin-left: 30px;
+    margin-top: 20px;
+    display: inline-block;
+    min-width: 100px;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    max-width: 300px;
+}
+
+.hostel-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+
+.card-title {
+    margin-bottom: 0.5rem;
+}
+
+.hostelCard-footer {
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.hostel-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    border-radius: calc(0.25rem - 1px);
+}
+
+.hostel-img {
+    height: 40%;
+    width: 100%;
+}
+
+span {
+    float: right;
+    margin-right: 10px;
+}
+
+/* h5 {
+
+        float: left;
+        margin-left: 10px;
+    }*/

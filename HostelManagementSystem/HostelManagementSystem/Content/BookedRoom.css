@@ -1,0 +1,92 @@
+﻿body {
+    background: #fff;
+}
+
+
+.profiles {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    padding-right: 0px;
+}
+
+    .profiles img {
+        margin: auto;
+        border-radius: 5px;
+        margin-top: 60px;
+    }
+
+    .profiles h5 {
+        width: 100%;
+        padding: 5px 5px 0px 5px;
+        text-align: justify;
+        font-weight: bold;
+        color: #555;
+        font-size: 25px;
+        text-transform: capitalize;
+        margin-bottom: 0;
+        margin-left: 100px;
+    }
+
+    .profiles p {
+        width: 100%;
+        text-align: justify;
+        color: #555;
+        font-size: 17px;
+        text-transform: capitalize;
+        margin: 0;
+    }
+
+    .profiles a {
+        width: 100%;
+        text-align: center;
+        padding: 10px 5px;
+        color: #555;
+        font-size: 15px;
+        text-transform: capitalize;
+    }
+
+    .profiles ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        .profiles ul li {
+            display: block;
+            color: #555;
+            padding: 5px;
+            font-weight: 400;
+            font-size: 15px;
+            margin-left: 30px;
+            padding-top: 10px;
+        }
+
+
+            .profiles ul li:hover span {
+                color: rgb(0, 4, 51);
+            }
+
+            .profiles ul li span {
+                color: #555;
+                padding-right: 10px;
+            }
+
+            .profiles ul li a {
+                color: #555;
+            }
+.deatils{
+    float:right;
+    margin-right:110px;
+}
+
+.navBarButton a {
+    margin-left: 10px;
+    color: #ffab40;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+    .navBarButton a:hover {
+        color: darkred;
+        text-decoration: none;
+    }

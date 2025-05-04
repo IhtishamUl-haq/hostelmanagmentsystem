@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbHostelManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Hostel">
+    <Key>
+      <PropertyRef Name="hostelId" />
+    </Key>
+    <Property Name="hostelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="30" />
+    <Property Name="OwnerName" Type="varchar" MaxLength="30" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+    <Property Name="IsCreatedOn" Type="datetime" />
+    <Property Name="IsUpdateBy" Type="int" />
+    <Property Name="IsUpdateON" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsCreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="LeaveAndBooked">
+    <Key>
+      <PropertyRef Name="leaveAndBookedId" />
+    </Key>
+    <Property Name="leaveAndBookedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" />
+    <Property Name="hostelId" Type="int" />
+    <Property Name="roomId" Type="int" />
+    <Property Name="bookLeave" Type="date" />
+    <Property Name="IsDeletd" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="updateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="LogingException">
+    <Key>
+      <PropertyRef Name="ExceptionId" />
+    </Key>
+    <Property Name="ExceptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExpMessage" Type="varchar(max)" />
+    <Property Name="Type" Type="varchar(max)" />
+    <Property Name="ExpTrace" Type="varchar(max)" />
+    <Property Name="ExpDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="paymentsId" />
+    </Key>
+    <Property Name="paymentsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hostelId" Type="int" />
+    <Property Name="Amount" Type="float" />
+    <Property Name="Type" Type="varchar" MaxLength="30" />
+    <Property Name="userId" Type="int" />
+    <Property Name="roomId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsCreatedBy" Type="int" />
+    <Property Name="IsCreatedOn" Type="date" />
+    <Property Name="IsUpdateBy" Type="int" />
+    <Property Name="IsUpdateOn" Type="datetime" />
+    <Property Name="PaymentDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="roomId" />
+    </Key>
+    <Property Name="roomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Size" Type="int" />
+    <Property Name="Rent" Type="float" Nullable="false" />
+    <Property Name="IsRoomAvailable" Type="varchar" MaxLength="20" />
+    <Property Name="IsCreatedBy" Type="int" />
+    <Property Name="IsCreatedOn" Type="datetime" />
+    <Property Name="IsUpdateBy" Type="int" />
+    <Property Name="IsUpdateOn" Type="datetime" />
+    <Property Name="hostelId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="NoBooking" Type="int" />
+    <Property Name="NoSeatAvailable" Type="int" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="RoombookingInfo">
+    <Key>
+      <PropertyRef Name="bookingId" />
+    </Key>
+    <Property Name="bookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bookingDate" Type="date" />
+    <Property Name="userId" Type="int" />
+    <Property Name="roomId" Type="int" />
+    <Property Name="hostelId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="updateBy" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="30" />
+    <Property Name="LastName" Type="varchar" MaxLength="30" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="100" />
+    <Property Name="CNIC" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="Image" Type="varchar(max)" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsCreatedBy" Type="int" />
+    <Property Name="IsCreatedOn" Type="datetime" />
+    <Property Name="IsUpdateBy" Type="int" />
+    <Property Name="IsUpdateOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleName" Type="varchar" MaxLength="30" />
+    <Property Name="IsCreatedBy" Type="int" />
+    <Property Name="IsCreatedOn" Type="datetime" />
+    <Property Name="IsUpdateBy" Type="int" />
+    <Property Name="IsUpdateON" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <Association Name="FK__LeaveAndB__hoste__57A801BA">
+    <End Role="Hostel" Type="Self.Hostel" Multiplicity="0..1" />
+    <End Role="LeaveAndBooked" Type="Self.LeaveAndBooked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hostel">
+        <PropertyRef Name="hostelId" />
+      </Principal>
+      <Dependent Role="LeaveAndBooked">
+        <PropertyRef Name="hostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LeaveAndB__roomI__59904A2C">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="LeaveAndBooked" Type="Self.LeaveAndBooked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="LeaveAndBooked">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LeaveAndB__userI__55BFB948">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="LeaveAndBooked" Type="Self.LeaveAndBooked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="LeaveAndBooked">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbPayment__roomI__5812160E">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbUser__RoleId__339FAB6E">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Hostel">
+    <End Role="Hostel" Type="Self.Hostel" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hostel">
+        <PropertyRef Name="hostelId" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="hostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoombookingInfo_Hostel">
+    <End Role="Hostel" Type="Self.Hostel" Multiplicity="0..1" />
+    <End Role="RoombookingInfo" Type="Self.RoombookingInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hostel">
+        <PropertyRef Name="hostelId" />
+      </Principal>
+      <Dependent Role="RoombookingInfo">
+        <PropertyRef Name="hostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoombookingInfo_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="RoombookingInfo" Type="Self.RoombookingInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="RoombookingInfo">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoombookingInfo_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="RoombookingInfo" Type="Self.RoombookingInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="RoombookingInfo">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbPayments_tbHostel">
+    <End Role="Hostel" Type="Self.Hostel" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hostel">
+        <PropertyRef Name="hostelId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="hostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbPayments_tbUser">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbHostelManagementSystemModelStoreContainer">
+    <EntitySet Name="Hostel" EntityType="Self.Hostel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LeaveAndBooked" EntityType="Self.LeaveAndBooked" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogingException" EntityType="Self.LogingException" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoombookingInfo" EntityType="Self.RoombookingInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__LeaveAndB__hoste__57A801BA" Association="Self.FK__LeaveAndB__hoste__57A801BA">
+      <End Role="Hostel" EntitySet="Hostel" />
+      <End Role="LeaveAndBooked" EntitySet="LeaveAndBooked" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LeaveAndB__roomI__59904A2C" Association="Self.FK__LeaveAndB__roomI__59904A2C">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="LeaveAndBooked" EntitySet="LeaveAndBooked" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LeaveAndB__userI__55BFB948" Association="Self.FK__LeaveAndB__userI__55BFB948">
+      <End Role="User" EntitySet="User" />
+      <End Role="LeaveAndBooked" EntitySet="LeaveAndBooked" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbPayment__roomI__5812160E" Association="Self.FK__tbPayment__roomI__5812160E">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbUser__RoleId__339FAB6E" Association="Self.FK__tbUser__RoleId__339FAB6E">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Hostel" Association="Self.FK_Room_Hostel">
+      <End Role="Hostel" EntitySet="Hostel" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoombookingInfo_Hostel" Association="Self.FK_RoombookingInfo_Hostel">
+      <End Role="Hostel" EntitySet="Hostel" />
+      <End Role="RoombookingInfo" EntitySet="RoombookingInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoombookingInfo_Room" Association="Self.FK_RoombookingInfo_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="RoombookingInfo" EntitySet="RoombookingInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoombookingInfo_User" Association="Self.FK_RoombookingInfo_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="RoombookingInfo" EntitySet="RoombookingInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbPayments_tbHostel" Association="Self.FK_tbPayments_tbHostel">
+      <End Role="Hostel" EntitySet="Hostel" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbPayments_tbUser" Association="Self.FK_tbPayments_tbUser">
+      <End Role="User" EntitySet="User" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

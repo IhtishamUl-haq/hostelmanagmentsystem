@@ -1,0 +1,95 @@
+﻿@model HostelManagementSystem.ViewModels.RoomsViewModel
+
+@{
+    ViewBag.Title = "RoomEdit";
+}
+
+
+<html>
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head> 
+<body>
+    <div class="container contact-form">
+        <form id="editRoom" action="RoomEdit" method="post">
+            <h3>Edit Room</h3>
+            <div class="row">
+                <div class="col-md-8" style="margin-left:90px">
+                    <div style="color:red">
+                        @ViewBag.RoomNotEdit
+                    </div>
+                     
+                    <div class="form-group">
+                        <input id="roomNumber" type="text" name="roomNumber" class="form-control" value="@Model.roomNumber" />
+                    </div>
+                    <div class="form-group">
+                        <input id="roomSize" type="text" name="roomSize" class="form-control" value="@Model.roomSize" />
+                    </div>
+                    <div class="form-group">
+                        <input id="roomRent" type="text" name="roomRent" class="form-control" value="@Model.roomRent" />
+                    </div>
+                 
+                    <div class="form-group "style=" margin-left:135px">
+
+                        <input type="submit" name="btnAddRoom" class="btnViewHostel" style="width:100px" value="Save" />
+                    </div>
+
+                    <hr />
+                    <div class="btnViewHostel" style="margin-left:140px">
+                        <a href="@Url.Action("RoomList","Hostel",new {id=Model.hostelId})" style="text-decoration: none; background: #dc3545; color: #fff; margin-left: 20px"><span> Cancel</span></a>
+                        
+                    </div>
+                </div>
+                @*<div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                        </div>
+                    </div>*@
+            </div>
+        </form>
+    </div>
+    <script>
+        $('#editRoom').on('submit', function (e) {
+            if (AddRoomValidation() == false) {
+                AddRoomValidation();
+                e.preventDefault();
+            }
+
+        });
+
+        function AddRoomValidation() {
+            var validate = true;
+            var inputRoomNumber = $('#roomNumber').val();
+            var inputRoomSize = $('#roomSize').val();
+            var inputRoomRent = $('#roomRent').val();
+            
+            /*var inputValidation = new RegExp(/^[0-9]$/);*/
+            $('.Error').remove();
+
+            if (inputRoomNumber.length < 1) {
+                $('#roomNumber').after('<span class="Error" style="color:red">This field is required.</span>');
+
+                validate = false;
+            }
+
+            if (inputRoomSize.length < 1) {
+                $('#roomSize').after('<span class="Error" style="color:red">This field is required.</span>');
+
+                validate = false;
+            }
+
+            if (inputRoomRent.length < 1) {
+                $('#roomRent').after('<span class="Error" style="color:red">This field is required.</span>');
+
+                validate = false;
+            }
+
+           
+
+            return validate
+        }
+    </script>
+</body>
+
+</html>
+

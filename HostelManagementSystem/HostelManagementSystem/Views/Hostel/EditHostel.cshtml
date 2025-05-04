@@ -1,0 +1,101 @@
+﻿@model HostelManagementSystem.ViewModels.HostelViewModel
+
+@{
+    ViewBag.Title = "EditHostel";
+}
+<html>
+<head>
+      <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container contact-form">
+        <form id="hostelEdit" action="Create" method="post">
+            <h3>Edit Hostel</h3>
+            <div class="row">
+                <div class="col-md-8" style="margin-left:90px">
+                    <div class="form-group">
+                        <label>Hostel Name</label>
+                        <input id="hostelName" type="text" name="Name" class="form-control" value="@Model.Name"  />
+                    </div>
+                    <div class="form-group">
+                        <label>Hostel Owner Name</label>
+                        <input id="hostelOwnerName" type="text" name="OwnerName" class="form-control" value="@Model.OwnerName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Hostel Address</label>
+                        <input id="hostelAddress" type="text" name="Address" class="form-control" value="@Model.Address" />
+                    </div>
+                    <div class="form-group">
+                        <label>Hostel  phone Number</label>
+                        <p>e.g:03431234567</p>
+                        <input id="hostelPhoneNo" type="text" name="PhoneNo" class="form-control" value="@Model.PhoneNo" />
+                    </div>
+                    <div class="form-group"style=" margin-left:135px" >
+                        <input type="submit" name="btnAddHostel" class="btnViewHostel"style="width:100px" value="Save" />
+                    </div>
+
+                   <hr />
+                    <div class="btnViewHostel"style=" margin-left:140px" >
+                        <a href="@Url.Action("HostelList","Hostel")" class="btnViewHostel" style="text-decoration: none; background: #dc3545; font-weight: 600; color: #fff; margin-left:30px"><span> Cancel</span></a>
+                        @*@Html.ActionLink("View Hostel", "HostelList", "Hostel")*@
+                    </div>
+                </div>
+                @*<div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                        </div>
+                    </div>*@
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<script>
+    $('#hostelEdit').on('submit', function (e) {
+        if (AddHostelValidation() == false) {
+            AddHostelValidation();
+            e.preventDefault();
+        }
+
+    });
+    function AddHostelValidation() {
+        var validate = true;
+        var inputHostelName = $('#hostelName').val();
+        var inputHostelOwnerName = $('#hostelOwnerName').val();
+        var inputHostelAddress = $('#hostelAddress').val();
+        var inputHostelPhone = $('#hostelPhoneNo').val();
+        var InputHostelPhoneExp = RegExp(/^[0-9]{11}$/);
+        $('.Error').remove();
+        if (inputHostelName.length < 1) {
+            $('#hostelName').after('<span class="Error" style="color:red">This field is required.</span>');
+
+            validate = false;
+        }
+        if (inputHostelOwnerName.length < 1) {
+            $('#hostelOwnerName').after('<span class="Error" style="color:red">This field is required.</span>');
+
+            validate = false;
+        }
+        if (inputHostelAddress.length < 1) {
+            $('#hostelAddress').after('<span class="Error" style="color:red">This field is required.</span>');
+
+            validate = false;
+        }
+        //if (inputHostelPhone.length < 1) {
+        //    $('#hostelPhoneNo').after('<span class="Error" style="color:red">This field is required.</span>');
+
+        //    validate = false;
+        //}
+
+        if (!InputHostelPhoneExp.test(inputHostelPhone))
+        {
+            $('#hostelPhoneNo').after('<span class="Error" style="color:red">Please enter valid Number.</span>');
+
+            validate = false;
+        }
+        return validate
+
+
+    }
+</script>
+ 

@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbHostelManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="DbHostelManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="LeaveAndBookeds" EntityType="DbHostelManagementSystemModel.LeaveAndBooked" />
+    <EntitySet Name="UserRoles" EntityType="DbHostelManagementSystemModel.UserRole" />
+    <EntitySet Name="Users" EntityType="DbHostelManagementSystemModel.User" />
+    <AssociationSet Name="FK__LeaveAndB__userI__55BFB948" Association="DbHostelManagementSystemModel.FK__LeaveAndB__userI__55BFB948">
+      <End Role="User" EntitySet="Users" />
+      <End Role="LeaveAndBooked" EntitySet="LeaveAndBookeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbUser__RoleId__339FAB6E" Association="DbHostelManagementSystemModel.FK__tbUser__RoleId__339FAB6E">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Hostels" EntityType="DbHostelManagementSystemModel.Hostel" />
+    <AssociationSet Name="FK__LeaveAndB__hoste__57A801BA" Association="DbHostelManagementSystemModel.FK__LeaveAndB__hoste__57A801BA">
+      <End Role="Hostel" EntitySet="Hostels" />
+      <End Role="LeaveAndBooked" EntitySet="LeaveAndBookeds" />
+    </AssociationSet>
+    <EntitySet Name="RoombookingInfoes" EntityType="DbHostelManagementSystemModel.RoombookingInfo" />
+    <AssociationSet Name="FK_RoombookingInfo_Hostel" Association="DbHostelManagementSystemModel.FK_RoombookingInfo_Hostel">
+      <End Role="Hostel" EntitySet="Hostels" />
+      <End Role="RoombookingInfo" EntitySet="RoombookingInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoombookingInfo_User" Association="DbHostelManagementSystemModel.FK_RoombookingInfo_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="RoombookingInfo" EntitySet="RoombookingInfoes" />
+    </AssociationSet>
+    <EntitySet Name="Rooms" EntityType="DbHostelManagementSystemModel.Room" />
+    <AssociationSet Name="FK_Room_Hostel" Association="DbHostelManagementSystemModel.FK_Room_Hostel">
+      <End Role="Hostel" EntitySet="Hostels" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LeaveAndB__roomI__59904A2C" Association="DbHostelManagementSystemModel.FK__LeaveAndB__roomI__59904A2C">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="LeaveAndBooked" EntitySet="LeaveAndBookeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoombookingInfo_Room" Association="DbHostelManagementSystemModel.FK_RoombookingInfo_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="RoombookingInfo" EntitySet="RoombookingInfoes" />
+    </AssociationSet>
+    <EntitySet Name="Payments" EntityType="DbHostelManagementSystemModel.Payment" />
+    <AssociationSet Name="FK_tbPayments_tbHostel" Association="DbHostelManagementSystemModel.FK_tbPayments_tbHostel">
+      <End Role="Hostel" EntitySet="Hostels" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbPayment__roomI__5812160E" Association="DbHostelManagementSystemModel.FK__tbPayment__roomI__5812160E">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbPayments_tbUser" Association="DbHostelManagementSystemModel.FK_tbPayments_tbUser">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <EntitySet Name="LogingExceptions" EntityType="DbHostelManagementSystemModel.LogingException" />
+  </EntityContainer>
+  <EntityType Name="LeaveAndBooked">
+    <Key>
+      <PropertyRef Name="leaveAndBookedId" />
+    </Key>
+    <Property Name="leaveAndBookedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="hostelId" Type="Int32" />
+    <Property Name="roomId" Type="Int32" />
+    <Property Name="bookLeave" Type="DateTime" Precision="0" />
+    <Property Name="IsDeletd" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="updateBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="DbHostelManagementSystemModel.FK__LeaveAndB__userI__55BFB948" FromRole="LeaveAndBooked" ToRole="User" />
+    <NavigationProperty Name="Hostel" Relationship="DbHostelManagementSystemModel.FK__LeaveAndB__hoste__57A801BA" FromRole="LeaveAndBooked" ToRole="Hostel" />
+    <NavigationProperty Name="Room" Relationship="DbHostelManagementSystemModel.FK__LeaveAndB__roomI__59904A2C" FromRole="LeaveAndBooked" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IsCreatedBy" Type="Int32" />
+    <Property Name="IsCreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsUpdateBy" Type="Int32" />
+    <Property Name="IsUpdateON" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Users" Relationship="DbHostelManagementSystemModel.FK__tbUser__RoleId__339FAB6E" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CNIC" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsCreatedBy" Type="Int32" />
+    <Property Name="IsCreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsUpdateBy" Type="Int32" />
+    <Property Name="IsUpdateOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="LeaveAndBookeds" Relationship="DbHostelManagementSystemModel.FK__LeaveAndB__userI__55BFB948" FromRole="User" ToRole="LeaveAndBooked" />
+    <NavigationProperty Name="UserRole" Relationship="DbHostelManagementSystemModel.FK__tbUser__RoleId__339FAB6E" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="RoombookingInfoes" Relationship="DbHostelManagementSystemModel.FK_RoombookingInfo_User" FromRole="User" ToRole="RoombookingInfo" />
+    <NavigationProperty Name="Payments" Relationship="DbHostelManagementSystemModel.FK_tbPayments_tbUser" FromRole="User" ToRole="Payment" />
+  </EntityType>
+  <Association Name="FK__LeaveAndB__userI__55BFB948">
+    <End Type="DbHostelManagementSystemModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.LeaveAndBooked" Role="LeaveAndBooked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="LeaveAndBooked">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbUser__RoleId__339FAB6E">
+    <End Type="DbHostelManagementSystemModel.UserRole" Role="UserRole" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Hostel">
+    <Key>
+      <PropertyRef Name="hostelId" />
+    </Key>
+    <Property Name="hostelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsCreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsUpdateBy" Type="Int32" />
+    <Property Name="IsUpdateON" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsCreatedBy" Type="Int32" />
+    <NavigationProperty Name="LeaveAndBookeds" Relationship="DbHostelManagementSystemModel.FK__LeaveAndB__hoste__57A801BA" FromRole="Hostel" ToRole="LeaveAndBooked" />
+    <NavigationProperty Name="RoombookingInfoes" Relationship="DbHostelManagementSystemModel.FK_RoombookingInfo_Hostel" FromRole="Hostel" ToRole="RoombookingInfo" />
+    <NavigationProperty Name="Rooms" Relationship="DbHostelManagementSystemModel.FK_Room_Hostel" FromRole="Hostel" ToRole="Room" />
+    <NavigationProperty Name="Payments" Relationship="DbHostelManagementSystemModel.FK_tbPayments_tbHostel" FromRole="Hostel" ToRole="Payment" />
+  </EntityType>
+  <Association Name="FK__LeaveAndB__hoste__57A801BA">
+    <End Type="DbHostelManagementSystemModel.Hostel" Role="Hostel" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.LeaveAndBooked" Role="LeaveAndBooked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hostel">
+        <PropertyRef Name="hostelId" />
+      </Principal>
+      <Dependent Role="LeaveAndBooked">
+        <PropertyRef Name="hostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RoombookingInfo">
+    <Key>
+      <PropertyRef Name="bookingId" />
+    </Key>
+    <Property Name="bookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bookingDate" Type="DateTime" Precision="0" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="roomId" Type="Int32" />
+    <Property Name="hostelId" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="updateBy" Type="Int32" />
+    <NavigationProperty Name="Hostel" Relationship="DbHostelManagementSystemModel.FK_RoombookingInfo_Hostel" FromRole="RoombookingInfo" ToRole="Hostel" />
+    <NavigationProperty Name="User" Relationship="DbHostelManagementSystemModel.FK_RoombookingInfo_User" FromRole="RoombookingInfo" ToRole="User" />
+    <NavigationProperty Name="Room" Relationship="DbHostelManagementSystemModel.FK_RoombookingInfo_Room" FromRole="RoombookingInfo" ToRole="Room" />
+  </EntityType>
+  <Association Name="FK_RoombookingInfo_Hostel">
+    <End Type="DbHostelManagementSystemModel.Hostel" Role="Hostel" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.RoombookingInfo" Role="RoombookingInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hostel">
+        <PropertyRef Name="hostelId" />
+      </Principal>
+      <Dependent Role="RoombookingInfo">
+        <PropertyRef Name="hostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoombookingInfo_User">
+    <End Type="DbHostelManagementSystemModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.RoombookingInfo" Role="RoombookingInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="RoombookingInfo">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="roomId" />
+    </Key>
+    <Property Name="roomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Size" Type="Int32" />
+    <Property Name="Rent" Type="Double" Nullable="false" />
+    <Property Name="IsRoomAvailable" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsCreatedBy" Type="Int32" />
+    <Property Name="IsCreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsUpdateBy" Type="Int32" />
+    <Property Name="IsUpdateOn" Type="DateTime" Precision="3" />
+    <Property Name="hostelId" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="NoBooking" Type="Int32" />
+    <Property Name="NoSeatAvailable" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Hostel" Relationship="DbHostelManagementSystemModel.FK_Room_Hostel" FromRole="Room" ToRole="Hostel" />
+    <NavigationProperty Name="LeaveAndBookeds" Relationship="DbHostelManagementSystemModel.FK__LeaveAndB__roomI__59904A2C" FromRole="Room" ToRole="LeaveAndBooked" />
+    <NavigationProperty Name="RoombookingInfoes" Relationship="DbHostelManagementSystemModel.FK_RoombookingInfo_Room" FromRole="Room" ToRole="RoombookingInfo" />
+    <NavigationProperty Name="Payments" Relationship="DbHostelManagementSystemModel.FK__tbPayment__roomI__5812160E" FromRole="Room" ToRole="Payment" />
+  </EntityType>
+  <Association Name="FK_Room_Hostel">
+    <End Type="DbHostelManagementSystemModel.Hostel" Role="Hostel" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.Room" Role="Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hostel">
+        <PropertyRef Name="hostelId" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="hostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LeaveAndB__roomI__59904A2C">
+    <End Type="DbHostelManagementSystemModel.Room" Role="Room" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.LeaveAndBooked" Role="LeaveAndBooked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="LeaveAndBooked">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoombookingInfo_Room">
+    <End Type="DbHostelManagementSystemModel.Room" Role="Room" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.RoombookingInfo" Role="RoombookingInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="RoombookingInfo">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="paymentsId" />
+    </Key>
+    <Property Name="paymentsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hostelId" Type="Int32" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="roomId" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsCreatedBy" Type="Int32" />
+    <Property Name="IsCreatedOn" Type="DateTime" Precision="0" />
+    <Property Name="IsUpdateBy" Type="Int32" />
+    <Property Name="IsUpdateOn" Type="DateTime" Precision="3" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Hostel" Relationship="DbHostelManagementSystemModel.FK_tbPayments_tbHostel" FromRole="Payment" ToRole="Hostel" />
+    <NavigationProperty Name="Room" Relationship="DbHostelManagementSystemModel.FK__tbPayment__roomI__5812160E" FromRole="Payment" ToRole="Room" />
+    <NavigationProperty Name="User" Relationship="DbHostelManagementSystemModel.FK_tbPayments_tbUser" FromRole="Payment" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_tbPayments_tbHostel">
+    <End Type="DbHostelManagementSystemModel.Hostel" Role="Hostel" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hostel">
+        <PropertyRef Name="hostelId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="hostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbPayment__roomI__5812160E">
+    <End Type="DbHostelManagementSystemModel.Room" Role="Room" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbPayments_tbUser">
+    <End Type="DbHostelManagementSystemModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbHostelManagementSystemModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LogingException">
+    <Key>
+      <PropertyRef Name="ExceptionId" />
+    </Key>
+    <Property Name="ExceptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExpMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ExpTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ExpDate" Type="DateTime" Precision="0" />
+  </EntityType>
+</Schema>

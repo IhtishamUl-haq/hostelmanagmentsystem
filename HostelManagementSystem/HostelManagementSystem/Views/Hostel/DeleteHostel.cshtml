@@ -1,0 +1,98 @@
+﻿@model HostelManagementSystem.Models.Hostel
+@{
+    ViewBag.Title = "DeleteHostel";
+}
+
+
+<html>
+<head>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col" style="margin-left:300px">
+                <h3>Delete Hostel</h3>
+                <h5 style="color:red">Are you sure you want to delete hostel</h5>
+                @*<div style="color: red;margin-left:300px">
+                        @ViewBag.Error
+
+                    </div>*@
+
+
+            </div>
+            @if (Model == null)
+            {
+
+
+                <div style="color:red;font-weight:bold;margin-left:250px"> <h3>Error occurred during processing</h3></div>
+            }
+            else
+            {
+                <div class="row HostelDeatils">
+                    <div class="col-md-9" style="width:400px">
+
+                        <ul>
+                            <li><span class="">Hostel Name </span> <span class="deatils">@Model.Name </span> </li>
+                            <li><span>Hostel Owner</span> <span class="deatils">@Model.OwnerName</span> </li>
+                            <li><span>Hostel Address</span><span class="deatils">@Model.Address</span> </li>
+                            <li><span>Hostel Phone No</span><span class="deatils">@Model.PhoneNo</span> </li>
+
+                        </ul>
+                        <div>
+                            <div class="form-actions" style="margin-left:150px">
+                                <form action="DeleteHostel" method="post">
+                                    <input type="submit" class="btn btn-primary" value="Delete">
+
+                                </form>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+    <style>
+        .HostelDeatils {
+            margin-left: 200px;
+        }
+
+            .HostelDeatils ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .HostelDeatils ul li {
+                    display: block;
+                    color: #555;
+                    padding: 5px;
+                    font-weight: 400;
+                    font-size: 15px;
+                    margin-left: 30px;
+                    padding-top: 10px;
+                }
+
+                    .HostelDeatils ul li:hover span {
+                        color: rgb(0, 4, 51);
+                    }
+
+                    .HostelDeatils ul li span {
+                        color: #555;
+                        padding-right: 10px;
+                    }
+
+        .deatils {
+            float: right;
+        }
+    </style>
+</body>
+</html>
+

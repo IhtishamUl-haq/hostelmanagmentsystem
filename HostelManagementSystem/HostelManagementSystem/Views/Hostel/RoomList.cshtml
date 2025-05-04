@@ -1,0 +1,167 @@
+﻿@model IEnumerable<HostelManagementSystem.Models.Room>
+@{
+    ViewBag.Title = "RoomList";
+}
+<!doctype html>
+<html>
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+   
+</head>
+
+<body>
+    <div class="AddRoom-link">
+        <div class="hostel-link" style="float: right;margin-top:-90px; position:relative;margin-right:70px ">
+            <a href="@Url.Action("HostelList","Hostel")" style="text-decoration: none; font-weight: bold; margin-right: 50px"><span> Back</span></a>
+
+            <a href="#" data-toggle="modal" data-target="#Addroom" style="font-weight: bold; margin-right:50px"><span>Add Room</span></a>
+
+            <a href="@Url.Action("Logout","Login")" style=" font-weight: bold;">Logout</a>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Addroom" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title" style="margin-left:150px">Add Room</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="roomAdd" action="@Url.Action("AddRoom","Hostel")" method="post">
+                        <div style="color:red">
+                            @ViewBag.RoomNotAdd
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8" style="margin-left:80px">
+
+                                <div class="form-group mt-2">
+                                    <input id="roomNumber" type="text" name="roomNumber" class="form-control" placeholder="Room Number *" />
+                                    <div style="color:red">@TempData["RoomAvailability "]</div>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <input id="roomSize" type="text" name="roomSize" class="form-control" placeholder="Room Size*" />
+                                </div>
+                                <div class="form-group mt-2">
+                                    <input id="roomRent" type="text" name="roomRent" class="form-control" placeholder="Room Rent*" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btnViewHostel" data-dismiss="modal">Close</button>
+                            <input type="submit" name="btnAddRoom" class="btn btn-secondary btnViewHostel" id="submitRoom" value="Add Room" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+    <div style="color:red; margin-left:300px;font-weight:bold">
+        @TempData["RoomBooked"]
+        @TempData["RoomAdd"]
+        @TempData["RoomEdit"]
+    </div>
+    <div class="container">
+        <div class="row">
+            @if (Model == null)
+            {
+                <div style="color:red;margin-left:30%;margin-top:100px;font-size:x-large;font-weight:900">
+                    @ViewBag.NoRoom
+                </div>
+            }
+            else
+            {
+
+
+                foreach (var room in Model)
+                {
+                    <div class="col-sm-4">
+                        <div class="card p-3 bg-white">
+                            <div class="card-image">
+                                <img src="~/Images/hostelroom.jpg" >
+                            </div>
+                            <div class="text-cent mt-2" style="text-align:center">
+                                <h4>Room Number</h4>
+                                <h5 class="mt-0 text-black-50">@room.Number</h5>
+                            </div>
+                            <div class="stats mt-2">
+                                <div class=""><span style="margin-left:10px">Room Rent</span> <span style="float:right;margin-right:10px">@room.Rent Rs</span></div>
+                                <div class=""><span style="margin-left:10px">Room Size</span> <span style="float: right; margin-right: 10px">@room.Size</span></div>
+                                <div class=""><span style="margin-left:10px">No of booking</span> <span style="float: right; margin-right: 10px">@room.NoBooking</span></div>
+                            </div>
+                            <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                            <div class="AddRoom-link">
+
+                                @*<a href="@Url.Action("DeleteRoom","Hostel",new { id=room.roomId })"><span style="float:right;margin-right:10px">Delete room</span></a>*@
+
+                                @Html.ActionLink("Delete Room", "DeleteRoom", "Hostel",
+                                new { id = room.roomId },
+                                  new { onclick = "return confirm('Are you sure to delete this room?');" })
+
+                                <a href="@Url.Action("RoomEdit","Hostel",new { id=room.roomId })" style="float:right;margin-right:10px"><span>Edit room</span></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+
+    <script src="~/Scripts/AddRoom.js">
+
+    </script>
+    
+</body>
+</html>
+<style>
+    .card {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .card {
+        margin-top: 10px;
+        box-sizing: border-box;
+        border-radius: 2px;
+        background-clip: padding-box;
+        min-height: 400px;
+    }
+
+        .card .card-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+            .card .card-image img {
+                width: 100%;
+                border-radius: 2px 2px 0 0;
+                background-clip: padding-box;
+              
+            }
+        .card span {
+            font-size: medium;
+        }
+
+    .AddRoom-link a {
+        margin-left: 10px;
+        color: #ffab40;
+        transition: color 0.3s ease;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+        .AddRoom-link a:hover {
+            color: darkred;
+            text-decoration: none;
+        }
+
+
+    body {
+        background: #eee;
+    }
+</style>

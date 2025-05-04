@@ -1,0 +1,31 @@
+﻿/*.HostelDeatils {
+    margin-left: 200px;
+}*/
+
+    .HostelDeatils ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        .HostelDeatils ul li {
+            display: block;
+            color: #555;
+            padding: 5px;
+            font-weight: 400;
+            font-size: 15px;
+            margin-left: 30px;
+            padding-top: 10px;
+        }
+
+            .HostelDeatils ul li:hover span {
+                color: rgb(0, 4, 51);
+            }
+
+            .HostelDeatils ul li span {
+                color: #555;
+                padding-right: 10px;
+            }
+
+.deatils {
+    float: right;
+}

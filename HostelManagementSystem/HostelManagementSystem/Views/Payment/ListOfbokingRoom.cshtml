@@ -1,0 +1,173 @@
+﻿@model HostelManagementSystem.ViewModels.bookingRoomModel
+
+@{
+    ViewBag.Title = "ListOfbokingRoom";
+}
+
+@*@Html.Raw(TempData["NotAddPayment"])*@
+<html>
+<head>
+
+    <link href="~/Content/BookedRoom.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navBarButton" style="float: right;margin-top:-90px; position:relative;margin-right:70px; ">
+
+        <a @*href="@Url.Action("Create","Hostel")"*@ href="#"  data-toggle="modal" data-target="#listPayment" style="font-weight: bold; margin-right: 50px; text-decoration: none;"><span>View All Payments</span></a>
+        <a href="@Url.Action("Logout","Login")"  style=" font-weight: bold; text-decoration: none;">Logout</a>
+    </div>
+
+    <div class="modal fade" id="listPayment" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title" style="margin-left:150px">List Of All Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                        <div class="col-8" style="margin-left:40px">
+                            @if (Model == null)
+                            {
+
+
+                                <h4 style="color:red">Their are Some error</h4>
+                            }
+                            else
+                            {
+                                if (Model.paymentroom.Count == 0)
+                                {
+                                    <h3 style="color:red" >You can't pay any Room Fee</h3>
+                                }
+                                else
+                                {
+                                    foreach (var listPayment in Model.paymentroom)
+                                    {
+                        <ul>
+                            <li style="font-weight:bold"><span>Amount</span><span class="deatils">@listPayment.Amount</span> </li>
+                            <li style="font-weight:bold"><span>Date </span><span class="deatils">@listPayment.PaymentDate.Value.ToString("MM/dd/yyyy")</span> </li>
+                            
+                        </ul>
+                                        <hr />
+                                    }
+                                }
+                            }
+                            </div>
+                            
+
+                        </div>
+                        <div class="modal-footer navBarButton">
+                            <button type="button" class="btn btn-danger " data-dismiss="modal">Close</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+    </div>
+
+
+
+
+    <div class="container">
+
+        @if (Model == null)
+        {
+            <div style="margin-left:400px">
+                <h3 style="color:red">Please Login </h3>
+                <a href="@Url.Action("Login","Login")" class="btn btn-dark " style="text-decoration:none;margin-left:20px;width:100px">Login</a>
+            </div>
+
+        }
+        else
+        {
+            <div class="row" style="margin-bottom:-60px;margin-left:400px">
+                <h3 class="col" style="font-weight:bold;text-transform:capitalize;">@Model.bookingUser.FirstName  @Model.bookingUser.LastName </h3>
+
+            </div>
+            <div class="row profiles" style="width:65%;margin-left:150px">
+
+                <div class="col-4" style="height:100px;">
+                    <img src="@Url.Content(Model.bookingUser.Image)" class="img-responsive" style="width:300px;height:300px" />
+                </div>
+                <div class="col-8" style="margin-left:300px">
+                    @*<h6 class="row-sm-10">Address</h6>*@
+
+                    <h5>Hostel </h5>
+                    <ul>
+                        <li><span class="">Hostel Name</span> <span class="deatils">@Model.bookingHostel.Name</span> </li>
+                        <li><span>Hostel Address</span> <span class="deatils">@Model.bookingHostel.Address</span> </li>
+                        <li><span>Hostel Phone No</span><span class="deatils">@Model.bookingHostel.PhoneNo</span> </li>
+
+                    </ul>
+                    <h5>Room </h5>
+                    <ul>
+                        <li><span>Room No</span><span class="deatils">@Model.bookingRoom.Number</span> </li>
+                        <li><span>Room Rent </span><span class="deatils">@Model.bookingRoom.Rent</span> </li>
+                    </ul>
+
+
+                </div>
+
+                <hr />
+                <div style="margin-left:150px; margin-bottom:10px;width:150px;">
+                    <a href="@Url.Action("LeaveRoom","Payment", new {BookingId=Model.bookingRoombookingInfo.bookingId})" class="btn btn-danger" style="position:relative"><span style="font-weight:bold">Leave Room</span> </a>
+                    <a href="@Url.Action("AddPayment","Payment", new {roomId=Model.bookingRoom.roomId})" class="btn btn-danger" style="position:absolute;width:150px;margin-left:150px"><span style="font-weight:bold">Add Payment</span> </a>
+                </div>
+            </div>
+
+        }
+
+        <div class="row profiles" style="width:50%;margin-left:250px; margin-top:50px;margin-bottom:50px">
+            <div class="col-8" style="margin-left:100px">
+
+                <h4 style="margin-left:70px;font-weight:bold">Room Mates </h4>
+                @if (Model == null)
+                {
+
+            <h6 style="color:red"> Error occurred in application </h6>
+                }
+
+                else
+                {
+                    if (Model.listRoomMates.Count == 0)
+                    {
+
+
+                        <h4 style="text-align:center;color:red"> No one rigester in your Room</h4>
+                    }
+                    else
+                    {
+
+                        foreach (var roomMates in Model.listRoomMates)
+                        {
+
+                            <ul>
+                                <li style="font-weight:bold"><span>Name</span><span class="deatils">@roomMates.FirstName @roomMates.LastName</span> </li>
+                                <li style="font-weight:bold"><span>Phone No </span><span class="deatils">@roomMates.PhoneNo</span> </li>
+
+                            </ul>
+                            <hr />
+
+                        }
+                    }
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var error = '@TempData["NotAddPayment"]';
+        if (error) {
+            alert(error);
+        }
+
+    </script>
+</body>
+</html>
+ 

@@ -1,0 +1,132 @@
+﻿@model IEnumerable<HostelManagementSystem.Models.Hostel>
+
+
+@{
+    ViewBag.Title = "View Hostel";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="~/Content/StudentHostelRoom.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div style="float: right;margin-top:-100px; position:relative;margin-right:70px">
+        <a href="@Url.Action("Logout","Login")" class="btn text-center" style="text-decoration:none;height:50px; color:white;font-weight:bold">Logout</a>
+    </div>
+    @*@Html.ActionLink("Logout", "Logout", "Login")*@
+    <div class="container mt-5">
+        <div class="row ">
+            <div class="col">
+                @if (Model == null)
+                {
+                    <div style="color:red;margin-left:30%;margin-top:100px;font-size:x-large;font-weight:900">
+                        @ViewBag.Hostel
+                    </div>
+                }
+                else
+                {
+                    foreach (var hostel in Model)
+                    {
+
+
+                        <div class="hostelCard h-10">
+                            <img class="hostel-img" src="https://images.unsplash.com/photo-1623625434462-e5e42318ae49?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80" alt="..." />
+
+                            <div class="hostel-body">
+                                <div class="text-left text-s-dark mt-2 mb-2" style="margin-left:10px">
+                                    <h6>Hostel Name<span>@hostel.Name</span></h6>
+                                    <h6 class="mt-3">Owner Name<span>@hostel.OwnerName</span></h6>
+                                    <h6 class="mt-3">Hostel Address<span>@hostel.Address</span></h6>
+                                    <h6 class="mt-3">Hostel Phone<span>@hostel.PhoneNo</span></h6>
+                                </div>
+
+                                <div class="hostelCard-footer bg-transparent mt-2">
+                                    <div class="text-center"><a class="btn btn-primary" style="width:100%" href="@Url.Action("ViewRooms","Student", new {id=hostel.hostelId})">View Room</a></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+</html>
+@*<style>
+        .hostelCard {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        /* .card {
+
+            margin-top: 10px;
+            box-sizing: border-box;
+            border-radius: 2px;
+            background-clip: padding-box;
+            min-height: 400px;
+            max-width:400px;
+        }*/
+        .hostelCard {
+
+            margin-left:30px;
+            margin-top:20px;
+            display:inline-block;
+            min-width: 100px;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            max-width:300px;
+
+        }
+
+        .hostel-body {
+            flex: 1 1 auto;
+            padding: 1rem 1rem;
+        }
+
+        .card-title {
+            margin-bottom: 0.5rem;
+        }
+
+        .hostelCard-footer {
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-top: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        .hostel-img-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            border-radius: calc(0.25rem - 1px);
+        }
+
+        .hostel-img {
+            height: 40%;
+            width: 100%;
+        }
+
+        span {
+            float: right;
+            margin-right: 10px;
+        }
+
+        /* h5 {
+
+            float: left;
+            margin-left: 10px;
+        }*/
+    </style>*@
